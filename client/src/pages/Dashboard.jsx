@@ -15,13 +15,13 @@ export default function Dashboard() {
   }, [location.search]);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row ">
+    <div className="min-h-screen flex flex-col md:flex-row">
       {/* sidebar */}
       <div className="md:w-56">
         <DasSidebar />
       </div>
       {/* profile */}
-      <div className="">{tab === "profile" && <DasProfile />}</div>
+      {tab === "profile" && <DasProfile />}
     </div>
   );
 }
