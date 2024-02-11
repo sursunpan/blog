@@ -1,5 +1,6 @@
 import { Alert, Button, Modal, TextInput } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -33,7 +34,7 @@ export default function Profile() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({});
 
-  const { currentUser, error } = useSelector((state) => state.user);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const filePickerRef = useRef();
   const dispatch = useDispatch();
 
@@ -152,6 +153,7 @@ export default function Profile() {
     if (imageFile) {
       uploadImage();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageFile]);
 
   return (
@@ -222,9 +224,27 @@ export default function Profile() {
           defaultValue={currentUser?.password}
           onChange={handleOnChange}
         />
-        <Button type="submit" gradientDuoTone="purpleToBlue" outline>
-          Update
+        <Button
+          type="submit"
+          gradientDuoTone="purpleToBlue"
+          outline
+          disabled={loading || imageFileUploading}
+        >
+          {loading ? "Loading..." : "Update"}
         </Button>
+
+        {currentUser.isAdmin && (
+          <Link to={"/create-post"}>
+            <Button
+              type="Button"
+              gradientDuoTone="purpleToBlue"
+              outline
+              className="w-full h-full"
+            >
+              Create Post
+            </Button>
+          </Link>
+        )}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
