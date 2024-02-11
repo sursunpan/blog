@@ -50,9 +50,9 @@ export default function SignUp() {
         <div className="flex-1">
           <Link to="/" className="font-bold dark:text-white text-4xl">
             <span className="px-2 py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
-              Suraj&apos;s
+              Scribble
             </span>
-            Blog
+            Hub
           </Link>
           <p className="text-sm mt-5">
             This is blog App. You can sign with email and password or with
