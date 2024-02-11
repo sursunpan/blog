@@ -132,6 +132,22 @@ export default function Profile() {
     }
   };
 
+  const handleSignout = async () => {
+    try {
+      const res = await fetch("/api/user/signout", {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   useEffect(() => {
     if (imageFile) {
       uploadImage();
@@ -214,7 +230,9 @@ export default function Profile() {
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
           Delete Account
         </span>
-        <span className="cursor-pointer">Sign out</span>
+        <span onClick={handleSignout} className="cursor-pointer">
+          Sign out
+        </span>
       </div>
       {updateUserSuccess && (
         <Alert color="success" className="mt-5">
