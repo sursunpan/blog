@@ -10,7 +10,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { app } from "../firsbase";
+import { app } from "../firebase";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import {
   updateStart,
